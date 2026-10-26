@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0A110000000000000000001 /* DOWallpaperController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A110000000000000000003 /* DOWallpaperController.m */; };
+		D0A110000000000000000002 /* DOWallpaperImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A110000000000000000004 /* DOWallpaperImage.m */; };
 		040622AA2B77FE8E00393AAD /* DOPkgManagerPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040622A92B77FE8E00393AAD /* DOPkgManagerPickerViewController.m */; };
 		042479A22B66916B0082581B /* DOCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0424796B2B66916B0082581B /* DOCreditsViewController.m */; };
 		042479A32B66916B0082581B /* DOSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0424796C2B66916B0082581B /* DOSettingsController.m */; };
@@ -386,6 +388,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D0A110000000000000000003 /* DOWallpaperController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DOWallpaperController.m; sourceTree = "<group>"; };
+		D0A110000000000000000004 /* DOWallpaperImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DOWallpaperImage.m; sourceTree = "<group>"; };
+		D0A110000000000000000005 /* DOWallpaperController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DOWallpaperController.h; sourceTree = "<group>"; };
+		D0A110000000000000000006 /* DOWallpaperImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DOWallpaperImage.h; sourceTree = "<group>"; };
 		040622A82B77FE8E00393AAD /* DOPkgManagerPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DOPkgManagerPickerViewController.h; sourceTree = "<group>"; };
 		040622A92B77FE8E00393AAD /* DOPkgManagerPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DOPkgManagerPickerViewController.m; sourceTree = "<group>"; };
 		042479682B66916B0082581B /* DOJailbreakButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOJailbreakButton.h; sourceTree = "<group>"; };
@@ -862,6 +868,10 @@
 				0424798A2B66916B0082581B /* Log */,
 				042479992B66916B0082581B /* ActionMenu */,
 				04C246972B73220400E17924 /* Update */,
+				D0A110000000000000000005 /* DOWallpaperController.h */,
+				D0A110000000000000000003 /* DOWallpaperController.m */,
+				D0A110000000000000000006 /* DOWallpaperImage.h */,
+				D0A110000000000000000004 /* DOWallpaperImage.m */,
 				042479812B66916B0082581B /* DOUIManager.h */,
 				042479882B66916B0082581B /* DOUIManager.m */,
 				042479802B66916B0082581B /* DONavigationController.h */,
@@ -2277,6 +2287,8 @@
 				8C6599DD2C555A71000FF57F /* DOPSJetsamListItemsController.h in Sources */,
 				042479A22B66916B0082581B /* DOCreditsViewController.m in Sources */,
 				042479B32B66916B0082581B /* DODebugLogView.m in Sources */,
+				D0A110000000000000000001 /* DOWallpaperController.m in Sources */,
+				D0A110000000000000000002 /* DOWallpaperImage.m in Sources */,
 				042479AF2B66916B0082581B /* DONavigationController.m in Sources */,
 				04C246AE2B74ACA200E17924 /* DOAppSwitch.m in Sources */,
 				8C6599DB2C555A60000FF57F /* DOPSJetsamListItemsController.m in Sources */,
@@ -3105,6 +3117,7 @@
 					"$(PROJECT_DIR)/Dopamine/Dependencies",
 					"$(PROJECT_DIR)/Dopamine/Resources",
 				);
+				OTHER_LDFLAGS = ("$(inherited)", "-framework", PhotosUI, "-framework", ImageIO, "-framework", UniformTypeIdentifiers);
 				MARKETING_VERSION = 3.0.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.opa334.Dopamine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3143,6 +3156,7 @@
 					"$(PROJECT_DIR)/Dopamine/Dependencies",
 					"$(PROJECT_DIR)/Dopamine/Resources",
 				);
+				OTHER_LDFLAGS = ("$(inherited)", "-framework", PhotosUI, "-framework", ImageIO, "-framework", UniformTypeIdentifiers);
 				MARKETING_VERSION = 3.0.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.opa334.Dopamine;
 				PRODUCT_NAME = "$(TARGET_NAME)";

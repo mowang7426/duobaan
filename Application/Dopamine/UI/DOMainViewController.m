@@ -6,6 +6,7 @@
 //
 
 #import "DOMainViewController.h"
+#import "DONavigationController.h"
 #import "DOUIManager.h"
 #import "DOEnvironmentManager.h"
 #import "DOJailbreaker.h"
@@ -88,6 +89,9 @@
     
     //Action Menu
     DOActionMenuView *actionView = [[DOActionMenuView alloc] initWithActions:@[
+        [UIAction actionWithTitle:@"自定义壁纸" image:[UIImage systemImageNamed:@"photo"] identifier:@"wallpaper" handler:^(__kindof UIAction * _Nonnull action) {
+            [(DONavigationController *)self.navigationController presentWallpaperSettings];
+        }],
         [UIAction actionWithTitle:DOLocalizedString(@"Menu_Settings_Title") image:[UIImage systemImageNamed:@"gearshape" withConfiguration:[DOGlobalAppearance smallIconImageConfiguration]] identifier:@"settings" handler:^(__kindof UIAction * _Nonnull action) {
             [self.navigationController pushViewController:[[DOSettingsController alloc] init] animated:YES];
         }],

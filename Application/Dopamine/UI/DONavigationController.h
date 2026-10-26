@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DONavigationController : UINavigationController <UINavigationControllerDelegate>
 
+- (void)presentWallpaperSettings;
+
 @end
 
 NS_ASSUME_NONNULL_END

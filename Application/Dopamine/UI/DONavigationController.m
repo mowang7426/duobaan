@@ -10,10 +10,13 @@
 #import "DOModalBackAction.h"
 #import "DOGlobalAppearance.h"
 #import "DOThemeManager.h"
+#import "DOWallpaperController.h"
 
 @interface DONavigationController ()
 
 @property (nonatomic) UIImageView *backgroundImageView;
+@property (nonatomic, strong) DOWallpaperController *wallpaperController;
+@property (nonatomic, strong) UIView *wallpaperReadabilityOverlay;
 @property (nonatomic) DOMainViewController *mainView;
 @property (nonatomic) DOModalBackAction *backAction;
 
@@ -46,6 +49,29 @@
     self.backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.backgroundImageView.userInteractionEnabled = NO;
     self.backgroundImageView.layer.zPosition = -1;
+    self.backgroundImageView.clipsToBounds = YES;
+
+    self.wallpaperReadabilityOverlay = [[UIView alloc] init];
+    self.wallpaperReadabilityOverlay.backgroundColor = [UIColor colorWithWhite:0 alpha:0.65];
+    self.wallpaperReadabilityOverlay.userInteractionEnabled = NO;
+    self.wallpaperReadabilityOverlay.translatesAutoresizingMaskIntoConstraints = NO;
+    self.wallpaperReadabilityOverlay.hidden = YES;
+    [self.backgroundImageView addSubview:self.wallpaperReadabilityOverlay];
+    [NSLayoutConstraint activateConstraints:@[
+        [self.wallpaperReadabilityOverlay.leadingAnchor constraintEqualToAnchor:self.backgroundImageView.leadingAnchor],
+        [self.wallpaperReadabilityOverlay.trailingAnchor constraintEqualToAnchor:self.backgroundImageView.trailingAnchor],
+        [self.wallpaperReadabilityOverlay.topAnchor constraintEqualToAnchor:self.backgroundImageView.topAnchor],
+        [self.wallpaperReadabilityOverlay.bottomAnchor constraintEqualToAnchor:self.backgroundImageView.bottomAnchor],
+    ]];
+    self.wallpaperController = [[DOWallpaperController alloc] init];
+    __weak typeof(self) weakSelf = self;
+    self.wallpaperController.imageDidChange = ^(UIImage *image) {
+        typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) return;
+        strongSelf.backgroundImageView.image = image ?: [[[DOThemeManager sharedInstance] enabledTheme] image];
+        strongSelf.wallpaperReadabilityOverlay.hidden = (image == nil);
+    };
+    [self.wallpaperController loadSavedWallpaper];
 
     [self.view insertSubview:self.backgroundImageView atIndex:0];
     
@@ -70,6 +96,12 @@
         [self.backAction.topAnchor constraintEqualToAnchor:self.view.topAnchor],
         [self.backAction.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
     ]];
+}
+
+- (void)presentWallpaperSettings
+{
+    if (self.topViewController != self.mainView) return;
+    [self.wallpaperController presentSettingsFromViewController:self.mainView];
 }
 
 - (void)setBackgroundDimmed:(BOOL)dimmed
